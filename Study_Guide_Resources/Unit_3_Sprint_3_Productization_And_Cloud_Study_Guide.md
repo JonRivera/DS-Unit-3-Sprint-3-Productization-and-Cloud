@@ -26,6 +26,8 @@ expect and what they should do to get desired results.;virtual contract specifyi
 from one system to another/person.(Basillica ex)
 
 6. What does it mean to pickle a model? Why might this be useful?
+It means we searila  amodel so that we can store into a file which more easily be acccessed as appose to being rendered in a
+host and taking longer to produce the model.
 
 # Basics of Flask
 
@@ -36,9 +38,9 @@ Write a Flask application that displays "Hello World!" to the local host (usuall
 1. Flask is described as a "microframework" for developing web applications. What is a "microframework"?
 
 2. What is another web development framework in Python?
-
+- Django
 3. In this line of code: `APP = Flask(__name__)` What does `__name__` do?
-
+ __name__ lets python know where to run the file
 4. What line of your code tells when and where "Hello World!" should be displayed?
 
 5. What do we need to type into the terminal to run our flask application?
@@ -46,7 +48,11 @@ Write a Flask application that displays "Hello World!" to the local host (usuall
 # API's
 
 ## Coding
-API's are a common part of programming, whether setting up your own or using someone else's. Today we will be looking at the API for the board gaming hobby site BoardGameGeek (BGG). The API instructions can be found [here](https://boardgamegeek.com/wiki/page/BGG_XML_API&redirectedfrom=XML_API#). There are many wrappers online for the BGG API that you may use but the sample code below will use `requests` and the web scraping library `BeautifulSoup`.
+API's are a common part of programming, whether setting up your own or using someone else's. Today we will be looking 
+at the API for the board gaming hobby site BoardGameGeek (BGG). 
+The API instructions can be found [here](https://boardgamegeek.com/wiki/page/BGG_XML_API&redirectedfrom=XML_API#). 
+There are many wrappers online for the BGG API that you may use but the sample code below will use `requests` and the 
+web scraping library `BeautifulSoup`.
 
 ```python
 import requests
@@ -55,7 +61,7 @@ import bs4
 game_id = 13
 url = 'https://www.boardgamegeek.com/xmlapi/boardgame/' + str(game_id)
 result = requests.get(url)
-soup = bs4.BeautifulSoup(result.text, features='lxml')
+soup = bs4.BeautifulSoup(result.text, features='xml')
 
 print(soup.find('name').text)
 ```
@@ -91,14 +97,20 @@ Write a Flask web application using `SQLAlchemy` with the following:
 
 ## Questions of Understanding
 1. What line of code establishes what database should be used for your application?
-
+app.config['SQLALCHEMY_DATABASE_URI']
    
 
 2. How do we define our table, what columns are going to be in it, and what those column datatypes are?
-
+we create a table based on our models which are created based on SQL alchemy. We are letting sql alchemy do the sql for us.
    
 
 3. How do we make a query to our database?
+https://hackersandslackers.com/database-queries-sqlalchemy-orm/.
+Instead of writing raw SQL queries, we can construct
+ queries on our SQLAlchemy session by chaining together methods to retrieve data.
+  We're going to dive into SQLAlchemy's 
+extensive query API to get an idea of all the ways we can query our data.
+We always query on an SQLAlchemy session and pass the name of the model we'd like to query:
 
 # HTML Templates
 
